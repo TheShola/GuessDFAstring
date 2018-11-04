@@ -10,10 +10,8 @@
 	</style>
 
 	<script>
-			//boolean variable: 1 denotes player 1's turn, 0 denotes player 2's turn
 			var boolPlayer1Turn = 1;
 
-			//player1 object: keeps track of the player's chosen image, position, and has some helper functions
 			var player1 = {playerName:"Player 1",
 						   position:0, 
 						   player1Image:"",
@@ -172,11 +170,11 @@
 						   			document.getElementById( (player1.position + spacesToMove).toString() ).innerHTML = "<img src='" + player1.player1Image + "'>";
 						   			player1.position = player1.position + spacesToMove;
 									
-									player1.player1CheckForSpecials();			//check to see if the player hits a chute or ladder
+									player1.player1CheckForSpecials();			
 									
 									document.getElementById("currentTurnImg").src=player2.player2Image;
 									document.getElementById("nextUpImg").src=player1.player1Image;
-								}//close else
+								}
 								checkWinner();
 						   },
 						   setPlayer1Image : function(imageNumber){
@@ -189,9 +187,7 @@
 			var player2 = {playerName:"Player 2",
 						   position:0, 
 						   player2Image:"",
-						   player2CheckForSpecials : function(){
-									//Green Squares
-				
+						   player2CheckForSpecials : function(){				
 								if (player2.position == 1)
 								{
 									currentBlock = document.getElementById( (player2.position).toString() );
@@ -426,8 +422,6 @@
     			300); 
 			}
 
-			//function checks for the last iteration of the die roll (rolls 10 times)
-			//after the last roll
 			function checkDieRolls(counter, rollResult){
 				if(counter == 9){
 					clearInterval(dieRoll);
@@ -755,7 +749,7 @@
 					<button onclick="visibleDieRoll()">Guess The DFA</button>
 
 					<p id="rollResultText">
-						Textual updates will go here.
+						See the DFA result
 					</p>
 				</center>
 			</td>
