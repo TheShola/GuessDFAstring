@@ -405,7 +405,32 @@
 
 			//function creates the visual of a die rolling
 			function visibleDieRoll() {
-				prompt("Enter a string that will be accepted by this DFA <h1> Hello <h1>")
+        var questionsList = [
+    {
+      text: "{w| w contains at least three 1s} Four characters",
+      correctChoiceIndex: "1110",
+    },
+    {
+      text: "{w| w starts and ends with the same symbol}. 3 characters",
+      correctChoiceIndex: "101",
+    },
+    {
+      text: "{w| the length of w is odd}. 3 characters",
+      correctChoiceIndex: "111"
+    },
+    {
+      text: "{w| w has at least three a’s and at least two b’s} 6 characters ",
+      correctChoiceIndex: "aaabbb",
+    },
+    {
+      text: "{w| w has exactly two a’s and at least two b’s} 5 characters",
+      correctChoiceIndex: "aabbb",
+    },
+  ];
+    var index = Math.floor(Math.random() * questionsList.length);
+    var answer = prompt(questionsList[index].text)
+    console.log(answer)
+
 				var counter = 0;
 				//clear the border from the last result
 				dieImage.style.border = "0px";
@@ -413,9 +438,12 @@
 				var randomSide = -1;
 
     			dieRoll = setInterval(function(){ 
-    				randomSide = Math.floor(Math.random() * 6) + 1;
+            var randomSide = 0;
+            if (questionsList[index].correctChoiceIndex == answer) {
+              randomSide = questionsList[index].correctChoiceIndex.length;
+            }
     				image = document.getElementById("dieImage");
-    				image.src = "images/die1.gif";
+    				// image.src = "images/die1.gif";
     				counter = counter + 1;
     				checkDieRolls(counter, randomSide);
     			}, 
@@ -426,13 +454,16 @@
 				if(counter == 9){
 					clearInterval(dieRoll);
 					dieImage.style.border = "10px yellow solid";
-					rollResultText.innerHTML = "You rolled a " + rollResult;
+					rollResultText.innerHTML = "You advanced " + rollResult;
 
 					if(boolPlayer1Turn == 1){
+            console.log(rollResult)
     					player1.player1Turn(rollResult);
     					boolPlayer1Turn = 0;
     				}
     				else {
+              console.log("hurraj");
+              console.log(rollResult);
     					player2.player2Turn(rollResult);
     					boolPlayer1Turn = 1;
     				}
